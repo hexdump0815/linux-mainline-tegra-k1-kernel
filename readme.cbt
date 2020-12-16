@@ -22,11 +22,20 @@ cd /compile/source/linux-stable-tg
 export ARCH=arm
 make oldconfig
 make -j 4 bzImage dtbs modules
+cd tools/perf
+make
+cd ../power/cpupower
+make
+cd ../../..
 export kver=`make kernelrelease`
 echo ${kver}
 # remove debug info if there and not wanted
-#find . -type f -name '*.ko' | sudo xargs -n 1 objcopy --strip-unneeded
+# find . -type f -name '*.ko' | sudo xargs -n 1 objcopy --strip-unneeded
 make modules_install
+mkdir -p /lib/modules/${kver}/tools
+cp -v tools/perf/perf /lib/modules/${kver}/tools
+cp -v tools/power/cpupower/cpupower /lib/modules/${kver}/tools
+cp -v tools/power/cpupower/libcpupower.so.0.0.1 /lib/modules/${kver}/tools/libcpupower.so.0
 # make headers_install INSTALL_HDR_PATH=/usr
 cp -v .config /boot/config-${kver}
 cp -v arch/arm/boot/zImage /boot/zImage-${kver}
