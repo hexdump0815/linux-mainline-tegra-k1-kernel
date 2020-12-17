@@ -1,25 +1,25 @@
-#
-# based on https://github.com/reey/PKGBUILDs.git - core/linux-nyan/PKGBUILD
-#
+# directories:
+# - /compile/doc/stable-tg - the files in this dir
+# - /compile/source/linux-stable-tg - the kernel sources checked out from gitrepo
+# - /compile/result/stable-tg - the resulting kernel, modules etc. tar.gz files
+# name: stb-cbt
 
+# based on https://github.com/reey/PKGBUILDs.git - core/linux-nyan/PKGBUILD
 # IMPORTANT: this is work in progress and not yet ready to use!
-#
-# see misc.cbt: pulse default.pa required (not required: and mrvl firmware needs to go into the initramfs via hook)
-#
-# if the keyboard does not work in 4.19+, change those two lines by hand in .config
-# CONFIG_CROS_EC_I2C=y
-# CONFIG_CROS_EC_SPI=y
-#
-# this fixes the blank screen on boot
+# see misc.cbt: pulse default.pa required
+# (not required: and mrvl firmware needs to go into the initramfs via hook)
+
+# patches:
 #patch -p1 < /compile/doc/stable-tg/misc.cbt/tegra-cbt-blank-screen-fix.patch
 patch -p1 < /compile/doc/stable-tg/misc.cbt/PKGBUILDs/core/linux-nyan/enable-cec-for-nyan.patch
 patch arch/arm/boot/dts/tegra124-nyan.dtsi /compile/doc/stable-tg/misc.cbt/PKGBUILDs/core/linux-nyan/enable-CPU-freq.patch
 cp /compile/doc/stable-tg/misc.cbt/PKGBUILDs/core/linux-nyan/nyan-big_defconfig arch/arm/configs/nyan-big_defconfig
-# make nyan-big_defconfig
 
 cp /compile/doc/stable-tg/config.cbt /compile/source/linux-stable-tg/.config
 cd /compile/source/linux-stable-tg
+
 export ARCH=arm
+# make nyan-big_defconfig + fix options - see misc.cbt/options
 make oldconfig
 make -j 4 bzImage dtbs modules
 cd tools/perf
@@ -72,6 +72,7 @@ rm -f /usr/lib/libcrypto.so.1.1
 rm -f firmware/nvidia/tegra124/xusb.bin
 rm -f kernel.its vmlinux.uimg bootloader.bin kernel.keyblock kernel_data_key.vbprivk cmdline vmlinux.kpart
 # end chromebook special
+
 
 #
 # extlinux.conf entry
