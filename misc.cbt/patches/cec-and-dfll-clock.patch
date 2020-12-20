@@ -1,3 +1,6 @@
+from: https://github.com/reey/PKGBUILDs/blob/master/core/linux-nyan/enable-cec-for-nyan.patch
+and: from: https://github.com/reey/PKGBUILDs/blob/master/core/linux-nyan/enable-CPU-freq.patch
+
 diff --git a/arch/arm/boot/dts/tegra124-nyan.dtsi b/arch/arm/boot/dts/tegra124-nyan.dtsi
 index 3b10f475037f..2a7403fac55a 100644
 --- a/arch/arm/boot/dts/tegra124-nyan.dtsi
