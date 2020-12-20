@@ -13,7 +13,16 @@
 patch -p1 < /compile/doc/stable-tg/misc.cbt/patches/cec-and-dfll-clock.patch
 # slightly overclock the cpu - not used yet
 #patch -p0 < /compile/doc/stable-tg/misc.cbt/patches/overclock-nyan.patch
-cp /compile/doc/stable-tg/misc.cbt/patches/nyan-big_defconfig arch/arm/configs/nyan-big_defconfig
+cp /compile/doc/stable-tg/misc.cbt/patches/nyan-big_defconfig arch/arm/configs
+
+# some jetson k1 experimental v5.8.1 kernel build - see misc.cbt/patches/jetson-tk1
+#patch -p1 < /compile/doc/stable-tg/misc.cbt/patches/jetson-tk1/jetson-disable-usb2.patch
+#patch -p1 < /compile/doc/stable-tg/misc.cbt/patches/jetson-tk1/jetson-enable-wifi.patch
+#patch -p1 < /compile/doc/stable-tg/misc.cbt/patches/jetson-tk1/usb-host-xhci-tegra-fix-tegra_xusb_get_phy.patch
+#patch -p1 < /compile/doc/stable-tg/misc.cbt/patches/jetson-tk1/usb-host-xhci-tegra-otg-usb2-usb3-port-init.patch
+#patch -p1 < /compile/doc/stable-tg/misc.cbt/patches/jetson-tk1/usb-host-xhci-tegra-remove-a-duplicated-entry.patch
+#cp /compile/doc/stable-tg/misc.cbt/patches/jetson-tk1/jetson-tk1_defconfig arch/arm/configs
+# then below make jetson-tk1_defconfig
 
 cp /compile/doc/stable-tg/config.cbt /compile/source/linux-stable-tg/.config
 cd /compile/source/linux-stable-tg
