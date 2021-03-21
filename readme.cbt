@@ -30,8 +30,6 @@ cd /compile/source/linux-stable-tg
 
 export ARCH=arm
 make multi_v7_defconfig
-# kernel-ci uses multi_v7_defconfig so tegra_defconfig should not be required
-# #make tegra_defconfig
 /compile/doc/stable-tg/misc.cbt/options/enable-docker-options.sh
 /compile/doc/stable-tg/misc.cbt/options/enable-additional-options.sh
 make oldconfig
