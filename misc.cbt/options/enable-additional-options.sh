@@ -17,6 +17,9 @@ cd /compile/source/linux-stable-tg
 ./scripts/config -d CONFIG_DRM_EXYNOS
 ./scripts/config -d CONFIG_DRM_LIMA
 ./scripts/config -d CONFIG_DRM_PANFROST
+./scripts/config -d CONFIG_DRM_VC4
+./scripts/config -d CONFIG_DRM_MSM
+./scripts/config -d CONFIG_DRM_SUN4I
 ./scripts/config -d CONFIG_XFS_FS
 ./scripts/config -d CONFIG_REISERFS_FS
 ./scripts/config -d CONFIG_OCFS2_FS
