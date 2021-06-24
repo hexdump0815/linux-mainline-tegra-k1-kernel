@@ -62,7 +62,7 @@ rm -f zImage cmdline bootloader.bin kernel.itb vmlinux.kpart
 # end chromebook special
 cd /boot
 update-initramfs -c -k ${kver}
-mkimage -A arm -O linux -T ramdisk -a 0x0 -e 0x0 -n initrd.img-${kver} -d initrd.img-${kver} uInitrd-${kver}
+#mkimage -A arm -O linux -T ramdisk -a 0x0 -e 0x0 -n initrd.img-${kver} -d initrd.img-${kver} uInitrd-${kver}
 tar cvzf /compile/source/linux-stable-tg/${kver}.tar.gz /boot/*-${kver} /lib/modules/${kver}
 cp -v /compile/doc/stable-tg/config.cbt /compile/doc/stable-tg/config.cbt.old
 cp -v /compile/source/linux-stable-tg/.config /compile/doc/stable-tg/config.cbt
