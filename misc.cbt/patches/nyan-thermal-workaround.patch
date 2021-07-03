@@ -1,0 +1,61 @@
+see: https://libera.irclog.whitequark.org/tegra/2021-07-03#30201414
+
+diff --git a/arch/arm/boot/dts/tegra124-nyan.dtsi b/arch/arm/boot/dts/tegra124-nyan.dtsi
+index 63a81270300a..225ddf29f207 100644
+--- a/arch/arm/boot/dts/tegra124-nyan.dtsi
++++ b/arch/arm/boot/dts/tegra124-nyan.dtsi
+@@ -1,5 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0
+ #include <dt-bindings/input/input.h>
++#include <dt-bindings/thermal/thermal.h>
+ #include "tegra124.dtsi"
+ 
+ / {
+@@ -784,6 +785,47 @@ gpio-restart {
+ 		gpios = <&gpio TEGRA_GPIO(I, 5) GPIO_ACTIVE_LOW>;
+ 		priority = <200>;
+ 	};
++
++	cpus {
++		cpu0: cpu@0 {
++			#cooling-cells = <2>;
++		};
++
++		cpu1: cpu@1 {
++			#cooling-cells = <2>;
++		};
++
++		cpu2: cpu@2 {
++			#cooling-cells = <2>;
++		};
++
++		cpu3: cpu@3 {
++			#cooling-cells = <2>;
++		};
++	};
++
++	thermal-zones {
++		cpu {
++			trips {
++				cpu_passive_trip: cpu-passive {
++					/* throttle at 57C until temperature drops to 56.8C */
++					temperature = <57000>;
++					hysteresis = <200>;
++					type = "passive";
++				};
++			};
++
++			cooling-maps {
++				map1 {
++					trip = <&cpu_passive_trip>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++	};
+ };
+ 
+ #include "cros-ec-keyboard.dtsi"
