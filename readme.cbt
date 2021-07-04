@@ -15,7 +15,7 @@ patch -p1 < /compile/doc/stable-tg/misc.cbt/patches/cec-and-dfll-clock.patch
 # a workaround for the broken soctherm hw thermal driver for now
 patch -p1 < /compile/doc/stable-tg/misc.cbt/patches/nyan-thermal-workaround.patch
 # slightly overclock the cpu - not used yet
-#patch -p0 < /compile/doc/stable-tg/misc.cbt/patches/overclock-nyan.patch
+patch -p0 < /compile/doc/stable-tg/misc.cbt/patches/overclock-nyan.patch
 # not needed anymore as the config is defconfig based now
 #cp /compile/doc/stable-tg/misc.cbt/patches/nyan-big_defconfig arch/arm/configs
 
