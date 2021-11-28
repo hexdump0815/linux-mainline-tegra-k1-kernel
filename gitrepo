@@ -1,2 +1,6 @@
 origin	https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git (fetch)
 origin	https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git (push)
+
+grate kernel:
+origin	https://github.com/grate-driver/linux (fetch)
+origin	https://github.com/grate-driver/linux (push)
