@@ -16,7 +16,9 @@ patch -p1 < /compile/doc/stable-tg/misc.tst/patches/cec-and-dfll-clock.patch
 patch -p1 < /compile/doc/stable-tg/misc.tst/patches/nyan-thermal-workaround.patch
 
 export ARCH=arm
-scripts/kconfig/merge_config.sh -m arch/arm/configs/multi_v7_defconfig /compile/doc/kernel-config-options/docker-options.cfg /compile/doc/kernel-config-options/options-to-remove-generic.cfg /compile/doc/stable-tg/misc.tst/options/options-to-remove-special.cfg /compile/doc/kernel-config-options/additional-options-generic.cfg /compile/doc/kernel-config-options/additional-options-armv7l.cfg /compile/doc/stable-tg/misc.tst/options/additional-options-special.cfg
+# use tegra_defconfig instead of multi_v7_defconfig in this special test setup
+#scripts/kconfig/merge_config.sh -m arch/arm/configs/multi_v7_defconfig /compile/doc/kernel-config-options/docker-options.cfg /compile/doc/kernel-config-options/options-to-remove-generic.cfg /compile/doc/stable-tg/misc.tst/options/options-to-remove-special.cfg /compile/doc/kernel-config-options/additional-options-generic.cfg /compile/doc/kernel-config-options/additional-options-armv7l.cfg /compile/doc/stable-tg/misc.tst/options/additional-options-special.cfg
+scripts/kconfig/merge_config.sh -m arch/arm/configs/tegra_defconfig /compile/doc/kernel-config-options/docker-options.cfg /compile/doc/kernel-config-options/options-to-remove-generic.cfg /compile/doc/stable-tg/misc.tst/options/options-to-remove-special.cfg /compile/doc/kernel-config-options/additional-options-generic.cfg /compile/doc/kernel-config-options/additional-options-armv7l.cfg /compile/doc/stable-tg/misc.tst/options/additional-options-special.cfg
 ( cd /compile/doc/kernel-config-options ; git rev-parse --verify HEAD ) > /compile/doc/stable-tg/misc.tst/options/kernel-config-options.version
 make olddefconfig
 make -j 4 bzImage dtbs modules
