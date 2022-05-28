@@ -3,7 +3,7 @@
 # - /compile/source/linux-grate-tst - the kernel sources checked out from gitrepo
 # - /compile/result/stable-tg - the resulting kernel, modules etc. tar.gz files
 # - /compile/doc/kernel-config-options - https://github.com/hexdump0815/kernel-config-options
-# name: tst-tst
+# name: tst-tst - test kernel based on the grate tegra kernel tree
 
 cd /compile/source/linux-grate-tst
 
